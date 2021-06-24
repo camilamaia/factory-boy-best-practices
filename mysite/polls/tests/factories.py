@@ -1,6 +1,5 @@
-from factory import Factory, Faker, LazyFunction, Trait
-
 from django.utils import timezone
+from factory import Factory, Faker, LazyFunction, Trait
 
 from polls.models import Choice, Question
 

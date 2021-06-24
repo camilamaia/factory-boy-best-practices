@@ -37,7 +37,7 @@ $ poetry shell
 ### Install the dependencies
 
 ```shell
-$ poetry install
+$ make install
 ```
 
 ### Setup the Database
