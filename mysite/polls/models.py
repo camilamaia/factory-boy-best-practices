@@ -23,7 +23,6 @@ class Question(models.Model):
 
     def __str__(self):
         question = self.question_text
-
         if self.premium:
             question = f"⭐️ {question}"
 
@@ -59,7 +58,9 @@ class Question(models.Model):
 
 
 class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(
+        Question, on_delete=models.CASCADE, related_name="choices"
+    )
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
 

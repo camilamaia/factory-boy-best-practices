@@ -1,7 +1,3 @@
-import datetime
-
-from django.utils import timezone
-
 from polls.models import Question
 from polls.tests.factories import (
     FutureQuestionFactory,
@@ -16,7 +12,7 @@ class TestQuestion:
         """
         str(question) returns the question_text for non premium questions without author
         """
-        question = QuestionFactory(
+        question = QuestionFactory.build(
             question_text="Pepsi or Coke?", premium=False, author=None
         )
         assert str(question) == "Pepsi or Coke?"
@@ -26,7 +22,7 @@ class TestQuestion:
         str(question) returns the `question_text - By author` for English non premium questions
         with author
         """
-        question = QuestionFactory(
+        question = QuestionFactory.build(
             question_text="Pepsi or Coke?",
             language=Question.EN,
             premium=False,
@@ -39,7 +35,7 @@ class TestQuestion:
         str(question) returns the `question_text - Por author` for English non premium questions
         with author
         """
-        question = QuestionFactory(
+        question = QuestionFactory.build(
             question_text="Pepsi or Coke?",
             language=Question.PT_BR,
             with_author=True,
@@ -51,7 +47,7 @@ class TestQuestion:
         """
         str(question) returns the `⭐️ question_text` for premium questions without author
         """
-        question = QuestionFactory(
+        question = QuestionFactory.build(
             question_text="Pepsi or Coke?", premium=True, author=None
         )
         assert str(question) == "⭐️ Pepsi or Coke?"
@@ -61,7 +57,7 @@ class TestQuestion:
         str(question) returns the `⭐️ question_text - By author` for English premium questions with
         author
         """
-        question = QuestionFactory(
+        question = QuestionFactory.build(
             question_text="Pepsi or Coke?",
             language=Question.EN,
             premium=True,
@@ -74,7 +70,7 @@ class TestQuestion:
         str(question) returns the `⭐️ question_text - Por author` for Portuguese premium questions
         with author
         """
-        question = QuestionFactory(
+        question = QuestionFactory.build(
             question_text="Pepsi or Coke?",
             language=Question.PT_BR,
             with_author=True,
@@ -110,7 +106,7 @@ class TestQuestion:
         """
         is_in_english returns True for English questions
         """
-        question = question = QuestionFactory(
+        question = question = QuestionFactory.build(
             language=Question.EN,
         )
         assert question.is_in_english is True
@@ -119,7 +115,7 @@ class TestQuestion:
         """
         is_in_english returns False for Portuguese questions
         """
-        question = question = QuestionFactory(
+        question = question = QuestionFactory.build(
             language=Question.PT_BR,
         )
         assert question.is_in_english is False
@@ -128,7 +124,7 @@ class TestQuestion:
         """
         is_in_portuguese returns False for English questions
         """
-        question = question = QuestionFactory(
+        question = question = QuestionFactory.build(
             language=Question.EN,
         )
         assert question.is_in_portuguese is False
@@ -137,7 +133,7 @@ class TestQuestion:
         """
         is_in_portuguese returns True for Portuguese questions
         """
-        question = question = QuestionFactory(
+        question = question = QuestionFactory.build(
             language=Question.PT_BR,
         )
         assert question.is_in_portuguese is True
