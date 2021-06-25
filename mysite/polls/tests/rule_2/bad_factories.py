@@ -1,6 +1,6 @@
 import factory
 
-from polls.models import Choice, Question
+from polls.models import Question
 
 
 class QuestionFactory(factory.django.DjangoModelFactory):

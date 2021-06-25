@@ -1,25 +1,23 @@
-from polls.tests.rule_3.bad_factories import (
-    QuestionFactory as BadQuestionFactory,
-)
-from polls.tests.rule_3.good_factories import (
-    QuestionFactory as GoodQuestionFactory,
-)
+from pytest import mark
+from polls.tests.rule_4.good_factories import QuestionFactory
+from polls.tests.polls.factories import QuestionFactory
 
 from polls.models import Question
 
 
+@mark.django_db
 def test_bad_to_string_with_non_premium_english_question_with_author():
-    question = BadQuestionFactory.build(
+    question = QuestionFactory.create(
         question_text="Pepsi or Coke?",
         language=Question.EN,
         premium=False,
-        author="John",
+        with_author=True,
     )
-    assert str(question) == "Pepsi or Coke? - By John"
+    assert str(question) == f"Pepsi or Coke? - By {question.author}"
 
 
 def test_good_to_string_with_non_premium_english_question_with_author():
-    question = GoodQuestionFactory.build(
+    question = QuestionFactory.build(
         question_text="Pepsi or Coke?",
         language=Question.EN,
         premium=False,
