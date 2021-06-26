@@ -1,7 +1,5 @@
 from pytest import mark
 from polls.tests.rule_4.good_factories import QuestionFactory
-from polls.tests.polls.factories import QuestionFactory
-
 from polls.models import Question
 
 

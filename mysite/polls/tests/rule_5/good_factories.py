@@ -1,13 +1,15 @@
 import factory
 
-from django.utils import timezone
-
 from polls.models import Choice, Question
 
 
 class ChoiceFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Choice
+
+    question = factory.SubFactory(
+        "polls.tests.rule_5.good_factories.QuestionFactory"
+    )
 
 
 class QuestionFactory(factory.django.DjangoModelFactory):
@@ -27,7 +29,3 @@ class QuestionFactory(factory.django.DjangoModelFactory):
                 choice_text="Option 2",
             ),
         )
-
-
-class RecentQuestionFactory(QuestionFactory):
-    pub_date = factory.LazyFunction(timezone.now)
