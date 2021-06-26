@@ -66,3 +66,20 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
+
+
+class Person(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+
+
+class ParentsInfo(models.Model):
+    person = models.OneToOneField(
+        Person,
+        on_delete=models.CASCADE,
+        related_name="parents",
+    )
+    mothers_first_name = models.CharField(max_length=30)
+    mothers_last_name = models.CharField(max_length=30)
+    fathers_first_name = models.CharField(max_length=30)
+    fathers_last_name = models.CharField(max_length=30)
