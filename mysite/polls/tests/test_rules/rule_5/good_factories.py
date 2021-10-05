@@ -8,7 +8,7 @@ class ChoiceFactory(factory.django.DjangoModelFactory):
         model = Choice
 
     question = factory.SubFactory(
-        "polls.tests.rule_5.good_factories.QuestionFactory"
+        "polls.tests.test_rules.rule_5.good_factories.QuestionFactory"
     )
 
 
