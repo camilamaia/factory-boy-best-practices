@@ -4,12 +4,12 @@
 
 <h1>Polls</h1>
 
-{% if latest_question_list %}
+{% if latest_poll_list %}
     <ul>
-        {% for question in latest_question_list %}
+        {% for poll in latest_poll_list %}
             <li>
-                <a href="{% url 'polls:detail' question.id %}">{{ question }}</a>
-                {% if question.poll.was_published_recently %}
+                <a href="{% url 'polls:detail' poll.id %}">{{ poll }}</a>
+                {% if poll.was_published_recently %}
                     <span style="color:blue;font-size:12px;">new!</span>
                 {% endif %}
             </li>
