@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Choice, Question
+from polls.models import Choice, Poll, Question
 
 
 class ChoiceInline(admin.TabularInline):
@@ -8,27 +8,20 @@ class ChoiceInline(admin.TabularInline):
     extra = 3
 
 
+class PollInline(admin.TabularInline):
+    model = Poll
+
+
 class QuestionAdmin(admin.ModelAdmin):
-    fieldsets = [
-        (None, {"fields": ["question_text"]}),
-        (
-            "Question information",
-            {
-                "fields": ["author", "language", "premium", "pub_date"],
-            },
-        ),
-    ]
-    inlines = [ChoiceInline]
-    list_display = (
-        "question_text",
-        "pub_date",
-        "was_published_recently",
-        "author",
-        "language",
-        "premium",
-    )
-    list_filter = ["pub_date", "language", "premium"]
-    search_fields = ["question_text"]
+    inlines = [PollInline, ChoiceInline]
+    list_display = ("question_text", "language", "poll", "get_pub_date")
+    list_filter = ("poll__pub_date", "language", "poll__premium")
+    search_fields = ("question_text",)
+    ordering = ("-poll__pub_date",)
+
+    @admin.display(description="Pub Date")
+    def get_pub_date(self, obj):
+        return obj.poll.pub_date
 
 
 admin.site.register(Question, QuestionAdmin)

@@ -5,11 +5,16 @@
 <h1>Polls</h1>
 
 {% if latest_question_list %}
-<ul>
-    {% for question in latest_question_list %}
-    <li><a href="{% url 'polls:detail' question.id %}">{{ question }}</a></li>
-    {% endfor %}
-</ul>
+    <ul>
+        {% for question in latest_question_list %}
+            <li>
+                <a href="{% url 'polls:detail' question.id %}">{{ question }}</a>
+                {% if question.poll.was_published_recently %}
+                    <span style="color:blue;font-size:12px;">new!</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
 {% else %}
-<p>No polls are available.</p>
+    <p>No polls are available.</p>
 {% endif %}
