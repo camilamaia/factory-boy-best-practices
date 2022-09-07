@@ -31,6 +31,8 @@
 
 1. Fixtures should be used only to wrap factories
 
-1. Avoid sharing fixtures among different files
+1. Use fixtures to wrap factories to avoid duplication
+
+1. Avoid sharing factories or fixtures among different files
 
 1. get_or_create should be used only for unique keys
