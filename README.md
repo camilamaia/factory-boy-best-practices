@@ -29,8 +29,6 @@
     * SubFactory: builds/creates the SubFactory during the process of creation of the main factory
     * RelatedFactory: builds/creates the RelatedFactory after creating the main factory
 
-1. Fixtures should be used only to wrap factories
-
 1. Use fixtures to wrap factories to avoid duplication
 
 1. Avoid sharing factories or fixtures among different files
